@@ -1,55 +1,80 @@
 const Trip = require('../models/Trip')
-const { NotFoundError } = require('../errors')
+const { StatusCodes } = require('http-status-codes')
+const { BadRequestError, NotFoundError } = require('../errors')
 
 // Create Trip
 const createTrip = async (req, res) => {
   req.body.createdBy = req.user.userId
   const trip = await Trip.create(req.body)
-  res.status(201).json(trip)
+  res.status(StatusCodes.CREATED).json({ trip })
 }
 
 // Get all trips for logged-in user
-const getTrips = async (req, res) => {
+const getAllTrips = async (req, res) => {
   const trips = await Trip.find({ createdBy: req.user.userId })
-  res.status(200).json(trips)
+  res.status(StatusCodes.OK).json({ trips, count: trips.length })
+}
+
+// Get single trip
+const getTrip = async (req, res) => {
+  const trip = await Trip.findOne({
+    _id: req.params.id,
+    createdBy: req.user.userId,
+  })
+
+  if (!trip) {
+    throw new NotFoundError('Trip not found')
+  }
+
+  res.status(StatusCodes.OK).json({ trip })
 }
 
 // Update trip
 const updateTrip = async (req, res) => {
-  const { id: tripId } = req.params
+  const { title, destination } = req.body
+
+  if (title === '' || destination === '') {
+    throw new BadRequestError('Fields cannot be empty')
+  }
 
   const trip = await Trip.findOneAndUpdate(
-    { _id: tripId, createdBy: req.user.userId },
+    { _id: req.params.id, createdBy: req.user.userId },
     req.body,
     { new: true, runValidators: true }
   )
 
   if (!trip) {
-    throw new NotFoundError(`No trip with id ${tripId}`)
+    throw new NotFoundError('Trip not found')
   }
 
-  res.status(200).json(trip)
+  res.status(StatusCodes.OK).json({ trip })
 }
 
 // Delete trip
 const deleteTrip = async (req, res) => {
-  const { id: tripId } = req.params
-
   const trip = await Trip.findOneAndDelete({
-    _id: tripId,
-    createdBy: req.user.userId
+    _id: req.params.id,
+    createdBy: req.user.userId,
   })
 
   if (!trip) {
-    throw new NotFoundError(`No trip with id ${tripId}`)
+    throw new NotFoundError('Trip not found')
   }
 
-  res.status(200).json({ msg: 'Trip deleted' })
+  res.status(StatusCodes.OK).json({ msg: 'Trip removed' })
 }
 
 module.exports = {
   createTrip,
-  getTrips,
+  getAllTrips,
+  getTrip,
   updateTrip,
-  deleteTrip
+  deleteTrip,
 }
+
+
+//package.json scripts
+//start → runs normally.
+
+//dev → runs with nodemon (auto restarts on file changes).
+
