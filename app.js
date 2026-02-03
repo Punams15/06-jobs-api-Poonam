@@ -35,7 +35,10 @@ app.use(
   })
 )
 
-// Routes
+// Serve public folder for front-end
+app.use(express.static("public"));
+
+// API Routes
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/trips', tripsRouter)
 
@@ -59,3 +62,20 @@ const start = async () => {
 
 start()
 
+
+/*A few notes to make sure it works as expected:
+
+Static Front-End:
+app.use(express.static("public")); will serve  index.html and all other files in the public/ folder. This must be above the API routes and error handlers (which it is).
+
+API Routes:
+ /api/v1/auth and /api/v1/trips routes are set up correctly. For this assignment, we’ll be calling /api/v1/trips from the front end using fetch().
+
+Error Handling:
+notFoundMiddleware and errorHandlerMiddleware are at the end — perfect.
+
+Port:
+Make sure you go to http://localhost:5000 if your .env has PORT=5000.
+
+Next step:
+create the front-end files in the public/ folder (index.html, index.js, etc.) and test that index.html loads when you visit localhost:5000. */

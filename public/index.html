@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trips List</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <h1>Trips List</h1>
+    <hr />
+    <p id="message"></p>
+    <hr />
+
+    <!-- Login/Register Selection -->
+    <div id="logon-register" style="display:none;">
+      <button type="button" id="logon">Log In</button>
+      <button type="button" id="register">Register</button>
+    </div>
+
+    <!-- Log In Form -->
+    <div id="logon-div" style="display:none;">
+      <form>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" />
+        </div>
+        <button type="button" id="logon-button">Log In</button>
+        <button type="button" id="logon-cancel">Cancel</button>
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-div" style="display:none;">
+      <form>
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" />
+        </div>
+        <div>
+          <label for="email1">Email:</label>
+          <input type="email" id="email1" />
+        </div>
+        <div>
+          <label for="password1">Password:</label>
+          <input type="password" id="password1" />
+        </div>
+        <div>
+          <label for="password2">Verify Password:</label>
+          <input type="password" id="password2" />
+        </div>
+        <button type="button" id="register-button">Register</button>
+        <button type="button" id="register-cancel">Cancel</button>
+      </form>
+    </div>
+
+    <!-- Trips Table -->
+    <div id="trips" style="display:none;">
+      <p id="trips-message"></p>
+      <table id="trips-table">
+        <tr id="trips-table-header">
+          <th>Destination</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+          <th colspan="2"></th>
+        </tr>
+      </table>
+      <button type="button" id="add-trip">Add Trip</button>
+      <button type="button" id="logoff">Log Off</button>
+    </div>
+
+    <!-- Add/Edit Trip Form -->
+    <div id="edit-trip" style="display:none;">
+      <form>
+        <div>
+          <label for="destination">Destination:</label>
+          <input type="text" id="destination" />
+        </div>
+        <div>
+          <label for="startDate">Start Date:</label>
+          <input type="date" id="startDate" />
+        </div>
+        <div>
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate" />
+        </div>
+        <div>
+          <label for="status">Status:</label>
+          <select id="status">
+            <option value="planned">Planned</option>
+            <option value="completed">Completed</option>
+            <option value="canceled">Canceled</option>
+          </select>
+        </div>
+        <button type="button" id="adding-trip">Add/Update</button>
+        <button type="button" id="edit-cancel">Cancel</button>
+      </form>
+    </div>
+
+    <script src="./index.js" type="module"></script>
+  </body>
+</html>

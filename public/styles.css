@@ -1,0 +1,114 @@
+/* styles.css */
+
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+/* Headings */
+h1 {
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Paragraphs for messages */
+p#message,
+p#jobs-message {
+  color: #e74c3c;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* Forms styling */
+form {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px auto;
+  border-radius: 10px;
+  max-width: 400px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Buttons */
+button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.editButton {
+  background-color: #2ecc71;
+}
+
+.editButton:hover {
+  background-color: #27ae60;
+}
+
+.deleteButton {
+  background-color: #e74c3c;
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+}
+
+/* Divs visibility */
+#logon-register, #logon-div, #register-div, #jobs, #edit-job, #trips {
+  max-width: 800px;
+  margin: 0 auto;
+}
