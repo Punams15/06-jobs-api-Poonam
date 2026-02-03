@@ -1,20 +1,24 @@
 const express = require('express')
 const router = express.Router()
 
-const auth = require('../middleware/authentication') // Security gate = JWT Middleware
+const auth = require('../middleware/authentication') // JWT Middleware
 const {
   createTrip,
-  getTrips,
+  getAllTrips,
+  getTrip,
   updateTrip,
   deleteTrip
 } = require('../controllers/trips')
 
+// All routes require authentication
 router.post('/', auth, createTrip)
-router.get('/', auth, getTrips)
+router.get('/', auth, getAllTrips)       //  updated
+router.get('/:id', auth, getTrip)        // single trip by ID
 router.patch('/:id', auth, updateTrip)
 router.delete('/:id', auth, deleteTrip)
 
 module.exports = router
+
 
 
 /* Create a trip - only logged-in users can do this
