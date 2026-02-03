@@ -31,9 +31,9 @@ const getTrip = async (req, res) => {
 
 // Update trip
 const updateTrip = async (req, res) => {
-  const { title, destination } = req.body
+  const { destination, startDate, endDate, budget } = req.body
 
-  if (title === '' || destination === '') {
+  if (!destination || !startDate || !endDate || !budget) {
     throw new BadRequestError('Fields cannot be empty')
   }
 
@@ -71,6 +71,7 @@ module.exports = {
   updateTrip,
   deleteTrip,
 }
+
 
 
 //package.json scripts
